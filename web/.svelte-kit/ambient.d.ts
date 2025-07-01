@@ -26,37 +26,43 @@
  * ```
  */
 declare module '$env/static/private' {
+	export const NODE_ENV: string;
+	export const PORT: string;
+	export const HOST: string;
+	export const ORIGIN: string;
 	export const npm_config_user_agent: string;
 	export const NODE_VERSION: string;
 	export const HOSTNAME: string;
 	export const YARN_VERSION: string;
 	export const npm_node_execpath: string;
 	export const SHLVL: string;
-	export const PORT: string;
+	export const npm_config_noproxy: string;
 	export const HOME: string;
 	export const npm_package_json: string;
+	export const npm_config_userconfig: string;
+	export const npm_config_local_prefix: string;
 	export const npm_config_engine_strict: string;
-	export const pnpm_config_verify_deps_before_run: string;
-	export const npm_config_registry: string;
-	export const TERM: string;
+	export const COLOR: string;
+	export const npm_config_prefix: string;
+	export const npm_config_npm_version: string;
+	export const npm_config_cache: string;
 	export const npm_config_node_gyp: string;
 	export const PATH: string;
-	export const npm_package_name: string;
 	export const NODE: string;
-	export const npm_config_frozen_lockfile: string;
+	export const npm_package_name: string;
 	export const npm_lifecycle_script: string;
-	export const HOST: string;
 	export const npm_package_version: string;
 	export const npm_lifecycle_event: string;
-	export const npm_config_verify_deps_before_run: string;
 	export const NODE_PATH: string;
+	export const npm_config_globalconfig: string;
+	export const npm_config_init_module: string;
 	export const PWD: string;
 	export const npm_execpath: string;
-	export const npm_config__jsr_registry: string;
+	export const npm_config_global_prefix: string;
 	export const npm_command: string;
-	export const PNPM_SCRIPT_SRC_DIR: string;
-	export const NODE_ENV: string;
 	export const INIT_CWD: string;
+	export const EDITOR: string;
+	export const VITE_USER_NODE_ENV: string;
 }
 
 /**
@@ -88,37 +94,43 @@ declare module '$env/static/public' {
  */
 declare module '$env/dynamic/private' {
 	export const env: {
+		NODE_ENV: string;
+		PORT: string;
+		HOST: string;
+		ORIGIN: string;
 		npm_config_user_agent: string;
 		NODE_VERSION: string;
 		HOSTNAME: string;
 		YARN_VERSION: string;
 		npm_node_execpath: string;
 		SHLVL: string;
-		PORT: string;
+		npm_config_noproxy: string;
 		HOME: string;
 		npm_package_json: string;
+		npm_config_userconfig: string;
+		npm_config_local_prefix: string;
 		npm_config_engine_strict: string;
-		pnpm_config_verify_deps_before_run: string;
-		npm_config_registry: string;
-		TERM: string;
+		COLOR: string;
+		npm_config_prefix: string;
+		npm_config_npm_version: string;
+		npm_config_cache: string;
 		npm_config_node_gyp: string;
 		PATH: string;
-		npm_package_name: string;
 		NODE: string;
-		npm_config_frozen_lockfile: string;
+		npm_package_name: string;
 		npm_lifecycle_script: string;
-		HOST: string;
 		npm_package_version: string;
 		npm_lifecycle_event: string;
-		npm_config_verify_deps_before_run: string;
 		NODE_PATH: string;
+		npm_config_globalconfig: string;
+		npm_config_init_module: string;
 		PWD: string;
 		npm_execpath: string;
-		npm_config__jsr_registry: string;
+		npm_config_global_prefix: string;
 		npm_command: string;
-		PNPM_SCRIPT_SRC_DIR: string;
-		NODE_ENV: string;
 		INIT_CWD: string;
+		EDITOR: string;
+		VITE_USER_NODE_ENV: string;
 		[key: `PUBLIC_${string}`]: undefined;
 		[key: `${string}`]: string | undefined;
 	}

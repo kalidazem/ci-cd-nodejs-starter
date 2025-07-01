@@ -11,7 +11,8 @@
 </script>
 
 <div class="mt-12 flex h-svh flex-col items-center gap-y-4 p-4">
-	<h1 class="mx-auto max-w-2xl text-2xl font-semibold">{message}</h1>
+	<h1>Workflow is working 😎</h1>
+	<h2 class="mx-auto max-w-2xl text-2xl font-semibold">{message}</h2>
 
 	<div class="container mx-auto mb-4 max-w-3xl">
 		<form
@@ -40,7 +41,7 @@
 					{#if form && form.form === `delete-${todo.id}`}{form.message}{/if}
 					<span class="flex-1">{todo.description}</span>
 					<form
-                     class="flex gap-x-2"
+						class="flex gap-x-2"
 						action="?/complete"
 						method="post"
 						use:enhance={() => {

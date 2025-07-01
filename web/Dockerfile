@@ -21,14 +21,12 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-RUN npm install -g pnpm
-
 # Copy built files only
 COPY --from=builder /app/build ./build
 COPY --from=builder /app/package.json ./
 COPY --from=builder /app/pnpm-lock.yaml* ./
 COPY --from=builder /app/node_modules ./node_modules
 
-
+# FYI this doesn't expose port rather tells u that the container of this file listens on port 4000
 EXPOSE 4000
 CMD [ "node", "build" ]

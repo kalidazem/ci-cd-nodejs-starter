@@ -1,9 +1,8 @@
 const mongoose = require('mongoose');
-
 const app = require('./app');
 
 let server;
-//
+
 const username = process.env.MONGO_INITDB_ROOT_USERNAME;
 const password = process.env.MONGO_INITDB_ROOT_PASSWORD;
 const host = process.env.MONGODB_HOST;
@@ -12,7 +11,6 @@ const dbName = process.env.MONGODB_DATABASE;
 
 const mongoUrl = `mongodb://${username}:${password}@${host}:${port}/${dbName}?authSource=admin`;
 
-// sas
 mongoose
   .connect(mongoUrl, {
     useNewUrlParser: true,

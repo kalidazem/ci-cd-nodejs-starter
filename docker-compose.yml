@@ -27,7 +27,7 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
     networks:
       - app-net
-
+ 
   redis:
     image: redis:7.2-alpine
     env_file:
@@ -44,7 +44,6 @@ services:
       - ./web/.env
     ports:
       - "4000:4000"
-    # command: ["npm", "run", "preview"]
     restart: always
     networks:
       - app-net
@@ -52,6 +51,7 @@ services:
 volumes:
   mongo-data:
   mongodb_config:
+ 
 
 networks:
   app-net:
