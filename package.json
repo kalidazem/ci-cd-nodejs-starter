@@ -1,0 +1,16 @@
+{
+  "name": "ci-cd-nodejs-starter",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^1.10.0",
+    "mongoose": "^8.16.1"
+  },
+  "scripts": {
+    "docker:dev": "docker-compose up"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

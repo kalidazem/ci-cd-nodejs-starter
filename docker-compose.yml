@@ -1,0 +1,58 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: ./api
+    command: npm run start
+    restart: always
+    env_file:
+      - .env
+    depends_on:
+      - mongo
+      - redis
+    networks:
+      - app-net
+
+  mongo:
+    image: mongo:6.0.13
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - mongo-data:/data/db
+      - mongodb_config:/data/configdb
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+    networks:
+      - app-net
+
+  redis:
+    image: redis:7.2-alpine
+    env_file:
+      - .env
+    command: ["redis-server", "--requirepass", "${REDIS_PASSWORD}"]
+    restart: always
+    networks:
+      - app-net
+
+  web:
+    build:
+      context: ./web
+    env_file:
+      - ./web/.env
+    ports:
+      - "4000:4000"
+    # command: ["npm", "run", "preview"]
+    restart: always
+    networks:
+      - app-net
+      
+volumes:
+  mongo-data:
+  mongodb_config:
+
+networks:
+  app-net:
+    driver: bridge
