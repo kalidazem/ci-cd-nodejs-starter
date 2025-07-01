@@ -20,7 +20,7 @@ jobs:
           username: ${{ secrets.DO_USER }}
           key: ${{ secrets.DO_SSH_KEY }}
           script: |
-            cd /home/${{ secrets.DO_USER }}/your-project-folder
+            cd ~/ci-cd-nodejs-starter
             git pull origin main
             docker-compose down
             docker-compose -f docker-compose.yml up -d --build
