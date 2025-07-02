@@ -4,10 +4,10 @@ services:
   web-v2:
     build:
       context: ./web
-    image: webv2:latest
+    image: webv3:latest
     env_file:
       - ./web/.env
-    container_name: web-version-2
+    container_name: web-v3
     expose:
       - "4000"
     networks:
@@ -15,10 +15,10 @@ services:
   app-v2:
     build:
       context: ./api
-    image: appv2:latest
+    image: appv3:latest
     env_file:
       - .env
-    container_name: app-v2
+    container_name: app-v3
     expose:
       - "3000"
     networks:
