@@ -25,7 +25,7 @@ export class ApiAgent {
 		// });
 
 		this.axios = axios.create({
-			baseURL: 'http://app:3000'
+			baseURL: 'http://nginx/api'
 		});
 	}
 
