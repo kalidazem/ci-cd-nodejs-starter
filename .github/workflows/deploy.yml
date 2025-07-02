@@ -22,5 +22,5 @@ jobs:
           script: |
             cd ~/ci-cd-nodejs-starter
             git pull origin main
-            # Rebuild and recreate containers with your override v2 file
-            docker-compose -f docker-compose.yml -f docker-compose.override.v2.yml up -d --build web-v4 app-v4
+            # Rebuild and recreate containers with your override v5 file
+            docker-compose -f docker-compose.yml -f docker-compose.override.v5.yml up -d --build web-v5 app-v5
