@@ -7,7 +7,7 @@ const router = express.Router();
 router.post('/', async (req, res, next) => {
   try {
     const { description, completed } = req.body;
-    const todo = await Todo.create({ description,completed });
+    const todo = await Todo.create({ description: `${description} new version`, completed });
     return res.status(201).json({
       description: todo.description,
       completed: todo.completed,

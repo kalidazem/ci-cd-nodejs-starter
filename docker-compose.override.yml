@@ -3,8 +3,8 @@ version: '3'
 services:
   app:
     container_name: app-dev
-    ports:
-      - '3000:3000'
+    expose:
+      - '3000'
     volumes:
       - ./api/package.json:/usr/src/app/package.json
       - ./api/pnpm-lock.yaml:/usr/src/app/pnpm-lock.yaml
@@ -14,7 +14,7 @@ services:
 
   web:
     ports:
-     - '5173:5173'
+     - '4000'
     volumes:
       - ./web:/app
       - web_node_modules:/app/node_modules
