@@ -12,9 +12,7 @@
 
 <div class="mt-12 flex h-svh flex-col items-center gap-y-4 p-4">
 	<h1>Workflow is working 😎</h1>
-	<h2>This should appear by now</h2>
-	<h2>This the newest of newest version of frontend</h2>
-	<h2>This the newest of newest version of frontend</h2>
+	<h2>This is Frontend v2</h2>
 	<h3 class="mx-auto max-w-2xl text-2xl font-semibold">{message}</h3>
 
 	<div class="container mx-auto mb-4 max-w-3xl">

@@ -1,24 +1,24 @@
 version: '3'
 
 services:
-  web-v4:
+  web-v2:
     build:
       context: ./web
-    image: webv4:latest
+    image: webv2:latest
     env_file:
       - ./web/.env
-    container_name: web-v4
+    container_name: web-v2
     expose:
       - "4000"
     networks:
       - app-net
-  app-v4:
+  app-v2:
     build:
       context: ./api
-    image: appv4:latest
+    image: appv2:latest
     env_file:
       - .env
-    container_name: app-v4
+    container_name: app-v2
     expose:
       - "3000"
     networks:
