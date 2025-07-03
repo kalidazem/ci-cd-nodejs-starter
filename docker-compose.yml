@@ -4,18 +4,35 @@ services:
   app:
     build:
       context: ./api
+    image: ${IMAGE_APP_NAME}
     command: npm run start
-    restart: always
+    depends_on:
+      - mongo
+      - redis
     expose:
       - "3000"
     env_file:
-      - .env
+    - ./.env
+    networks:
+    - app-net
+
+
+   
+  web:
+    build:
+      context: ./web
+    image: ${IMAGE_WEB_NAME}
+    env_file:
+      - ./web/.env
+    expose:
+      - "4000"
     depends_on:
       - mongo
       - redis
     networks:
       - app-net
-
+    command: node build
+  
   mongo:
     image: mongo:6.0.13
     restart: always
@@ -53,21 +70,9 @@ services:
     networks:
       - app-net
 
-  web:
-    build:
-      context: ./web
-    env_file:
-      - ./web/.env
-    expose:
-      - "4000"
-    restart: always
-    networks:
-      - app-net
-      
 volumes:
   mongo-data:
   mongodb_config:
- 
 
 networks:
   app-net:

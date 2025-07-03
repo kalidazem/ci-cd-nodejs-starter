@@ -2,7 +2,7 @@ version: '3'
 
 services:
   app:
-    container_name: app-dev
+    image: ${IMAGE_APP_NAME}
     expose:
       - '3000'
     volumes:
@@ -13,6 +13,7 @@ services:
     command: npm run dev
 
   web:
+    image: ${IMAGE_WEB_NAME}
     ports:
      - '4000'
     volumes:

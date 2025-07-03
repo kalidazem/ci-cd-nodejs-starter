@@ -27,3 +27,18 @@ Thumbs.db
 # Vite
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+!CHANGELOG.md
+
+*.sh
+
+!build-image.sh
+!deploy-use-image.sh
+!get-image-version.sh
+nginx
+
+
+
+docker-compose.override.v0.1.1.yml
+docker-compose.override.yml
+/.github/workflows/build-and-deploy.yml
