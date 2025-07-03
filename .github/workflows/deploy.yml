@@ -30,6 +30,7 @@ jobs:
             git reset --hard origin/main
             git clean -fd
             export IMAGE_VERSION=${{ env.VERSION }}
+            echo ${IMAGE_VERSION}
             chmod +x build-image.sh
             chmod +x deploy-use-image.sh
             chmod +x get-image-version.sh
