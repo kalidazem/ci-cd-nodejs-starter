@@ -22,6 +22,8 @@ jobs:
           run: run image build
           script: |
             cd ~/ci-cd-nodejs-starter
+            git pull origin main
+            chmod +x *.sh
             ./get-image-version.sh
             ./build-image.sh
             ./deploy-use-image.sh
