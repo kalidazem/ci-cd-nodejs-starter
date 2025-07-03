@@ -35,7 +35,7 @@ vite.config.ts.timestamp-*
 !build-image.sh
 !deploy-use-image.sh
 !get-image-version.sh
-nginx
+./nginx
 
 
 
