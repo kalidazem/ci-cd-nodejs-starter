@@ -32,6 +32,7 @@ jobs:
             export IMAGE_VERSION=${{ env.VERSION }}
             chmod +x build-image.sh
             chmod +x deploy-use-image.sh
+            chmod +x get-image-version.sh
             ./get-image-version.sh
             ./build-image.sh
             ./deploy-use-image.sh
