@@ -1,6 +1,6 @@
 #!/bin/bash
 # get-version.sh
-IMAGE_VERSION=$(node -p "require('./package.json').version")
+# IMAGE_VERSION=$(node -p "require('./package.json').version")
 APP_IMAGE="app:${IMAGE_VERSION}"
 WEB_IMAGE="web:${IMAGE_VERSION}"
 PROJECT_NAME="project_${IMAGE_VERSION}"
