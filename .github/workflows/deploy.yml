@@ -13,13 +13,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Deploy to Droplet via SSH
+      - name: build and deploy to Droplet via SSH
         uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.DO_HOST }}
           username: ${{ secrets.DO_USER }}
           key: ${{ secrets.DO_SSH_KEY }}
+          run: run image build
           script: |
             cd ~/ci-cd-nodejs-starter
-            git pull origin main
-            docker-compose -f docker-compose.yml up -d --build
+            ./get-image-version.sh
+            ./build-image.sh
+            ./deploy-use-image.sh

@@ -2,7 +2,7 @@
 set -e
 
 # Load image vars
-source ./get-image-version.sh
+source .env
 
 echo "🚀 Started Deploying Web and App based on Image version $IMAGE_VERSION"
 
@@ -10,7 +10,7 @@ echo "🚀 Started Deploying Web and App based on Image version $IMAGE_VERSION"
  
 
 # Start dependencies (Mongo, Redis, Nginx)
-docker-compose -f docker-compose.yml --env-file .env up  
+docker-compose -f docker-compose.override.v${IMAGE_VERSION}.yml --env-file .env up  
 
 
 # Deploy to Swarm
