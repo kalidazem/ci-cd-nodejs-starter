@@ -12,10 +12,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
-      - name: Get image version from package.json
-        id: version
-        run: echo "VERSION=$(node -p 'require(\"./package.json\").version')" >> $GITHUB_ENV
+      
+      - name: Get version
+        id: get_version
+        runs: |
+          VERSION=$(jq -r .version package.json)
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+        shell: bash
 
       - name: build and deploy to Droplet via SSH
         uses: appleboy/ssh-action@v1.0.0
@@ -29,11 +32,44 @@ jobs:
             git fetch origin main
             git reset --hard origin/main
             git clean -fd
-            export IMAGE_VERSION=${{ env.VERSION }}
-            echo "IMAGE_VERSION is $IMAGE_VERSION"
-            chmod +x build-image.sh
-            chmod +x deploy-use-image.sh
-            chmod +x get-image-version.sh
-            ./get-image-version.sh
-            ./build-image.sh
-            ./deploy-use-image.sh
+            export VERSION=${{steps.get_version.outputs.version}}
+            cat <<EOF > docker-compose.new.yml
+            version: '3'
+
+            services:
+              app-${VERSION}:
+                build:
+                  context: ./api
+                image: app:${VERSION}
+                env_file:
+                 - .env
+                expose:
+                 - '3000'
+                command: npm run start
+                networks:
+                  - app-net
+
+              web-${VERSION}:
+                build:
+                  context: ./web
+                image: web:${VERSION}
+                env_file:
+                  - ./web/.env
+                expose:
+                  - '4000'
+                command: node build
+                networks:
+                  - app-net
+
+            networks:
+              app-net:
+                external:
+                  name: ci-cd-nodejs-starter_app-net
+            EOF
+
+            echo "New  docker-compose.new.yml generated"
+            cat docker-compose.new.yml
+
+            echo "Building and starting new services..."
+            
+            docker-compose -f docker-compose.new.yml up -d --build

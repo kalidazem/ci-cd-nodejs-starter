@@ -1,26 +1,27 @@
 version: '3'
 
+
 services:
-  app:
+  app-v0.0.1:
     image: ${IMAGE_APP_NAME}
+    env_file:
+      - .env
     expose:
       - '3000'
-    volumes:
-      - ./api/package.json:/usr/src/app/package.json
-      - ./api/pnpm-lock.yaml:/usr/src/app/pnpm-lock.yaml
-      - ./api/src:/usr/src/app/src
-      - api_node_modules:/usr/src/app/node_modules
-    command: npm run dev
-
-  web:
+    command: npm run start
+    networks:
+      - app-net
+  web-v0.0.1:
     image: ${IMAGE_WEB_NAME}
-    ports:
-     - '4000'
-    volumes:
-      - ./web:/app
-      - web_node_modules:/app/node_modules
-    command: ["npm", "run", "dev", "--", "--host"]
+    env_file:
+      - ./web/.env
+    expose:
+      - '4000'
+    command: node build
+    networks:
+      - app-net
 
-volumes:
-  api_node_modules:
-  web_node_modules:
+networks:
+  app-net:
+    external:
+      name: ci-cd-nodejs-starter_app-net

@@ -39,5 +39,7 @@ vite.config.ts.timestamp-*
 
 
 
-docker-compose.override.yml
+docker-compose.override.dev.yml
 /.github/workflows/build-and-deploy.yml
+
+*.sh 
