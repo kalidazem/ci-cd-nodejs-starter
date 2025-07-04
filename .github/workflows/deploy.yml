@@ -26,7 +26,6 @@ jobs:
           host: ${{ secrets.DO_HOST }}
           username: ${{ secrets.DO_USER }}
           key: ${{ secrets.DO_SSH_KEY }}
-          run: run image build
           script: |
             cd ~/ci-cd-nodejs-starter
             git fetch origin main
