@@ -40,6 +40,7 @@ jobs:
                 build:
                   context: ./api
                 image: app:${VERSION}
+                container_name: app-${VERSION}
                 env_file:
                  - .env
                 expose:
@@ -52,6 +53,7 @@ jobs:
                 build:
                   context: ./web
                 image: web:${VERSION}
+                container_name: web-${VERSION}
                 env_file:
                   - ./web/.env
                 expose:
