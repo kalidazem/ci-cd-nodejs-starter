@@ -15,7 +15,7 @@ jobs:
       
       - name: Get version
         id: get_version
-        runs: |
+        run: |
           VERSION=$(jq -r .version package.json)
           echo "version=$VERSION" >> $GITHUB_OUTPUT
         shell: bash
