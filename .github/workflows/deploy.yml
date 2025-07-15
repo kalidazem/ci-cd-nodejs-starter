@@ -31,4 +31,4 @@ jobs:
             export API_ENV="${{ secrets.API_ENV }}"
             export WEB_ENV="${{ secrets.WEB_ENV }}"
             export VERSION=${{ steps.get_version.outputs.version }}
-            bash ~/ci-cd-nodejs-starter/build-deploy.sh "$VERSION"
+            bash ./build-deploy.sh "$VERSION"
