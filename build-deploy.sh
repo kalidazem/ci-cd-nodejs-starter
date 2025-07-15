@@ -2,11 +2,6 @@
 
 set -e
 
-echo "📥 Syncing with main..."
-git fetch origin main
-git reset --hard origin/main
-git clean -fd
-
 echo "🔑 Writing .env files..."
 # Inject secrets passed in as env vars
 echo "$API_ENV" > ./api/.env
