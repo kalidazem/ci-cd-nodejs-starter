@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -e
-cd ~/ci-cd-nodejs-starter
+
 echo "📥 Syncing with main..."
 git fetch origin main
 git reset --hard origin/main
