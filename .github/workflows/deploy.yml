@@ -33,6 +33,8 @@ jobs:
             export VERSION=${{ steps.get_version.outputs.version }}
             echo "📥 Syncing with main..."
             cd ~/ci-cd-nodejs-starter
-            git clone https://github.com/kalidazem/ci-cd-nodejs-starter.git .
+            git fetch origin main
+            git reset --hard origin/main
+            git clean -fd
             ls -l
             bash ./build-deploy.sh
