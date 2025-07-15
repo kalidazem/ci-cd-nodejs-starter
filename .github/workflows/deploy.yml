@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      
+
       - name: Get version
         id: get_version
         run: |
@@ -20,57 +20,15 @@ jobs:
           echo "version=$VERSION" >> $GITHUB_OUTPUT
         shell: bash
 
-      - name: build and deploy to Droplet via SSH
+      - name: Build and deploy via SSH
         uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.DO_HOST }}
           username: ${{ secrets.DO_USER }}
           key: ${{ secrets.DO_SSH_KEY }}
+          envs: API_ENV,WEB_ENV
           script: |
-            cd ~/ci-cd-nodejs-starter
-            git fetch origin main
-            git reset --hard origin/main
-            git clean -fd
-            export VERSION=${{steps.get_version.outputs.version}}
-            cat <<EOF > docker-compose.new.yml
-            version: '3'
-
-            services:
-              app-${VERSION}:
-                build:
-                  context: ./api
-                image: app:${VERSION}
-                container_name: app-${VERSION}
-                env_file:
-                 - .env
-                expose:
-                 - '3000'
-                command: npm run start
-                networks:
-                  - app-net
-
-              web-${VERSION}:
-                build:
-                  context: ./web
-                image: web:${VERSION}
-                container_name: web-${VERSION}
-                env_file:
-                  - ./web/.env
-                expose:
-                  - '4000'
-                command: node build
-                networks:
-                  - app-net
-
-            networks:
-              app-net:
-                external:
-                  name: ci-cd-nodejs-starter_app-net
-            EOF
-
-            echo "New  docker-compose.new.yml generated"
-            cat docker-compose.new.yml
-
-            echo "Building and starting new services..."
-            
-            docker-compose -f docker-compose.new.yml up -d --build
+            export API_ENV="${{ secrets.API_ENV }}"
+            export WEB_ENV="${{ secrets.WEB_ENV }}"
+            export VERSION=${{ steps.get_version.outputs.version }}
+            bash ~/ci-cd-nodejs-starter/deploy.sh "$VERSION"
