@@ -47,4 +47,4 @@ networks:
 EOF
 
 echo "✅ docker-compose.new.yml created"
-docker-compose -f docker-compose.new.yml up -d --build
+docker compose -f docker-compose.new.yml up -d --build
