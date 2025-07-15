@@ -37,4 +37,4 @@ jobs:
             git reset --hard origin/main
             git clean -fd
             ls -l
-            bash ./build-deploy.sh
+            bash ./build-deploy.sh "$VERSION"
